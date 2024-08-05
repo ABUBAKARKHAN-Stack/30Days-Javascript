@@ -53,17 +53,44 @@ async function weatherDetails(city) {
 weatherDetails('karachi')
 
 async function forecast(city) {
-    let res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIKEY}&units=metric`)
-    let data = await res.json()
+    let res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIKEY}&units=metric`);
+    let data = await res.json();
     console.log(data);
-    document.querySelector('.forecast').innerHTML = data.list.slice(0, 5).map((currval) => {
-    //     return `
-    //     <div class="forecast-item">
-    //     <h3>${currval.dt}</h3>
-    //     <p>Temperature: ${currval.temp}°C</p>
-    //      <p>Condition: ${currval.condition}</p>
-    // </div>
-    //     `
-    })
+
+    // Filter to get one forecast per day
+    let dailyForecasts = [];
+    let currentDay = null;
+
+    data.list.forEach((forecast) => {
+        const date = new Date(forecast.dt_txt);
+        const day = date.getDate();
+
+        // Check if we have already added a forecast for this day
+        if (day !== currentDay && date.getHours() === 12) { // Choose forecasts around noon
+            dailyForecasts.push(forecast);
+            currentDay = day;
+        }
+    });
+
+    // Limit to 5 days
+    dailyForecasts = dailyForecasts.slice(0, 5);
+
+    document.querySelector('.forecast').innerHTML = dailyForecasts.map((currval) => {
+        const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const date = new Date(currval.dt_txt);
+        const dayName = daysOfWeek[date.getDay()];
+        
+        return `
+        <div class="forecast-item">
+            <p>${dayName}</p>
+            <p>${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+            <div class="forecast-layout"> 
+                <img src="/assets/temp-cold.svg" alt="Weather Icon" width="20px">
+                <p>${currval.main.temp_max}&deg;C / ${currval.main.temp_min}&deg;C</p>
+            </div>
+        </div>
+        `;
+    }).join('');
 }
-forecast('karachi')
+
+forecast('karachi');

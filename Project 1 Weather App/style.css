@@ -100,3 +100,17 @@ button:focus{
     align-items: center;
     gap: .5rem;
 }
+.forecast-item{
+    font-size: 10px;
+    margin: 20 auto;
+    border: 1px solid wheat;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+.forecast-layout{
+    display:flex ;
+}
