@@ -617,6 +617,10 @@ video {
   margin-top: 2rem;
 }
 
+.ml-4 {
+  margin-left: 1rem;
+}
+
 .flex {
   display: flex;
 }
@@ -631,6 +635,34 @@ video {
 
 .h-60 {
   height: 15rem;
+}
+
+.h-\[\] {
+  height: ;
+}
+
+.h-\[30rem\] {
+  height: 30rem;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
+.h-1 {
+  height: 0.25rem;
+}
+
+.h-8 {
+  height: 2rem;
+}
+
+.h-9 {
+  height: 2.25rem;
 }
 
 .w-1\/2 {
@@ -666,8 +698,58 @@ video {
   width: 26rem;
 }
 
+.w-\[35re\] {
+  width: 35re;
+}
+
+.w-\[35rem\] {
+  width: 35rem;
+}
+
+.w-\[\] {
+  width: ;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.w-8 {
+  width: 2rem;
+}
+
+.w-\[40\%\] {
+  width: 40%;
+}
+
+.max-w-sm {
+  max-width: 24rem;
+}
+
+.transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
 }
 
 .justify-center {
@@ -686,6 +768,10 @@ video {
   border-radius: 0.5rem;
 }
 
+.rounded-full {
+  border-radius: 9999px;
+}
+
 .rounded-l-lg {
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
@@ -700,9 +786,44 @@ video {
   border-width: 2px;
 }
 
+.border-4 {
+  border-width: 4px;
+}
+
+.border-t-4 {
+  border-top-width: 4px;
+}
+
+.border-t-2 {
+  border-top-width: 2px;
+}
+
+.border-solid {
+  border-style: solid;
+}
+
+.border-dotted {
+  border-style: dotted;
+}
+
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
+.border-blue-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(59 130 246 / var(--tw-border-opacity));
+}
+
+.border-blue-50 {
+  --tw-border-opacity: 1;
+  border-color: rgb(239 246 255 / var(--tw-border-opacity));
+}
+
+.border-black {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
 .bg-blue-500 {
