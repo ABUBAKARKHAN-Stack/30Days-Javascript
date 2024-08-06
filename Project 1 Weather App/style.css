@@ -6,13 +6,15 @@
 }
 
 html {
-    font-size: 16px; /* Base font size for scalability */
+    font-size: 16px;
+    /* Base font size for scalability */
 }
 
 body {
     background: linear-gradient(135deg, #00feba, #5b548a);
     font-family: "Poppins", sans-serif;
-    font-size: 1rem; /* Base font size */
+    font-size: 1rem;
+    /* Base font size */
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -22,12 +24,13 @@ body {
 .main {
     width: 100%;
     max-width: 500px;
-    padding: 20px; /* Original padding */
+    padding: 20px;
+    /* Original padding */
 }
 
 .card {
     background: linear-gradient(135deg, #00feba, #5b548a);
-    border: 0.5px solid #00feba;
+    border: 0.5px solid #63ecc7;
     color: #fff;
     padding: 50px 20px;
     display: flex;
@@ -36,15 +39,12 @@ body {
     align-items: center;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s linear;
 }
-.card:hover{
-    background: #00000050;
-    border: transparent;
-}
-.info-container{
+
+.info-container {
     display: none;
 }
+
 .top {
     display: flex;
     justify-content: space-between;
@@ -82,12 +82,18 @@ button:focus {
     border: transparent;
     padding: 15px 25px;
     font-size: 16px;
-    transition: all 0.3s ease;
+    transition: all 0.7s ease;
 }
 
 #search-city:focus {
     border: 0.5px solid gray;
     color: gray;
+}
+
+.cityName {
+    text-shadow: 0px 0px 5px #00feba;
+    letter-spacing: 2px;
+    font-weight: 500;
 }
 
 .weather {
@@ -104,16 +110,19 @@ button:focus {
     margin-top: 10px;
 }
 
+
 /* Keyframes for bounce and fade-in effect */
 @keyframes bounceIn {
     0% {
         transform: scale(0.5);
         opacity: 0;
     }
+
     50% {
         transform: scale(1.2);
         opacity: 0.7;
     }
+
     100% {
         transform: scale(1);
         opacity: 1;
@@ -124,6 +133,7 @@ button:focus {
     from {
         transform: scale(1);
     }
+
     to {
         transform: scale(1.1);
     }
@@ -131,13 +141,16 @@ button:focus {
 
 .weather-img {
     width: 45%;
-    max-width: 150px; /* Limit max width for larger screens */
-    animation: bounceIn 0.8s ease-out; /* Apply bounce and fade-in animation */
+    max-width: 150px;
+    /* Limit max width for larger screens */
+    animation: bounceIn 0.8s ease-out;
+    /* Apply bounce and fade-in animation */
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .weather-img:hover {
-    animation: hoverEffect 0.5s ease-in-out; /* Rotate and scale on hover */
+    animation: hoverEffect 0.5s ease-in-out;
+    /* Rotate and scale on hover */
     transform: scale(1.1);
     opacity: 0.9;
 }
@@ -170,7 +183,7 @@ button:focus {
 .forecast-item {
     font-size: 10px;
     box-shadow: 0px 0px 5px 1px #00000070;
-    background: #00000070;
+    background: #00000050;
     border-radius: 2px;
     padding: 5px;
     display: flex;
@@ -185,117 +198,173 @@ button:focus {
 }
 
 .forecast-item img {
-    animation: bounceIn 0.8s ease-out; /* Apply bounce and fade-in animation */
+    animation: bounceIn 0.8s ease-out;
+    /* Apply bounce and fade-in animation */
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .forecast-item img:hover {
-    animation: hoverEffect 0.5s ease-in-out; /* Rotate and scale on hover */
+    animation: hoverEffect 0.5s ease-in-out;
+    /* Rotate and scale on hover */
     transform: scale(1.1);
     opacity: 0.9;
+}
+
+.days-count {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 16px;
+    color: #ebfffc;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-shadow: 0px 0px 5px #00feba;
+    text-decoration: underline;
 }
 
 /* Media Queries for Responsive Design */
 @media (max-width: 450px) {
     button {
-        width: 35px; /* Adjust button size for medium screens */
+        width: 35px;
+        /* Adjust button size for medium screens */
         height: 35px;
     }
 
     #search-city {
-        font-size: 14px; /* Adjust font size for smaller input fields */
-        padding: 12px 20px; /* Adjust padding */
+        font-size: 14px;
+        /* Adjust font size for smaller input fields */
+        padding: 12px 20px;
+        /* Adjust padding */
+    }
+
+    .days-count {
+        font-size: 14px;
     }
 
     .weather {
-        font-size: 24px; /* Adjust font size for weather section */
+        font-size: 24px;
+        /* Adjust font size for weather section */
     }
 
     .weather-img {
-        width: 60%; /* Adjust image size for smaller screens */
+        width: 60%;
+        /* Adjust image size for smaller screens */
     }
 
     .forecast {
-        grid-template-columns: 1fr 1fr; /* Adjust grid layout for smaller screens */
+        grid-template-columns: 1fr 1fr;
+        /* Adjust grid layout for smaller screens */
     }
 
     .forecast-item {
-        font-size: 9px; /* Adjust font size */
-        padding: 8px; /* Adjust padding */
+        font-size: 9px;
+        /* Adjust font size */
+        padding: 8px;
+        /* Adjust padding */
     }
 }
 
 @media (max-width: 350px) {
     button {
-        width: 30px; /* Adjust button size for small screens */
+        width: 30px;
+        /* Adjust button size for small screens */
         height: 30px;
     }
 
+    .days-count {
+        font-size: 12px;
+    }
+
     #search-city {
-        font-size: 12px; /* Further adjust font size */
-        padding: 10px 15px; /* Further adjust padding */
+        font-size: 12px;
+        /* Further adjust font size */
+        padding: 10px 15px;
+        /* Further adjust padding */
     }
 
     .weather {
-        font-size: 20px; /* Further adjust font size */
+        font-size: 20px;
     }
 
     .weather-img {
-        width: 70%; /* Further adjust image size */
+        width: 70%;
     }
 
     .forecast {
-        grid-template-columns: 1fr; /* Single column for very small screens */
-        width: 100%; /* Full width */
-        margin: 0 auto; /* Center align forecast grid */
-        padding: 0 10px; /* Add horizontal padding to prevent edge touching */
+        grid-template-columns: 1fr;
+        /* Single column for very small screens */
+        width: 100%;
+        /* Full width */
+        margin: 0 auto;
+        /* Center align forecast grid */
+        padding: 0 10px;
+        /* Add horizontal padding to prevent edge touching */
     }
 
     .forecast-item {
-        font-size: 8px; /* Further adjust font size */
-        padding: 6px; /* Further adjust padding */
+        font-size: 8px;
+        /* Further adjust font size */
+        padding: 6px;
+        /* Further adjust padding */
     }
 }
 
 @media (max-width: 300px) {
     button {
-        width: 28px; /* Smaller button size for very small screens */
+        width: 28px;
+        /* Smaller button size for very small screens */
         height: 28px;
-        font-size: 10px; /* Adjust font size inside the button */
+        font-size: 10px;
+        /* Adjust font size inside the button */
     }
 
     #search-city {
-        font-size: 10px; /* Further adjust font size */
-        padding: 8px 12px; /* Further adjust padding */
-        width: calc(100% - 40px); /* Adjust width to fit button */
+        font-size: 10px;
+        /* Further adjust font size */
+        padding: 8px 12px;
+        /* Further adjust padding */
+        width: calc(100% - 40px);
+        /* Adjust width to fit button */
     }
 
     .weather {
-        font-size: 16px; /* Further reduce font size for readability */
-        margin-top: 15px; /* Adjust margin */
+        font-size: 16px;
+        /* Further reduce font size for readability */
+        margin-top: 15px;
+        /* Adjust margin */
     }
 
     .weather-img {
-        width: 85%; /* Slightly larger for better visibility on very small screens */
-        max-width: 100px; /* Limit max width for very small screens */
+        width: 85%;
+        /* Slightly larger for better visibility on very small screens */
+        max-width: 100px;
+        /* Limit max width for very small screens */
     }
 
     .details {
-        flex-direction: column; /* Stack details vertically */
-        gap: 8px; /* Adjust gap for vertical alignment */
-        align-items: center; /* Center align items */
+        flex-direction: column;
+        /* Stack details vertically */
+        gap: 8px;
+        /* Adjust gap for vertical alignment */
+        align-items: center;
+        /* Center align items */
     }
 
     .forecast {
-        grid-template-columns: 1fr; /* Single column for very small screens */
-        width: 100%; /* Full width */
-        margin: 0 auto; /* Center align forecast grid */
-        padding: 0; /* Remove padding if necessary */
+        grid-template-columns: 1fr;
+        /* Single column for very small screens */
+        width: 100%;
+        /* Full width */
+        margin: 0 auto;
+        /* Center align forecast grid */
+        padding: 0;
+        /* Remove padding if necessary */
     }
 
     .forecast-item {
         /* font-size: 7/px; Further adjust font size */
-        padding: 4px; /* Further adjust padding */
-        box-shadow: 0px 0px 4px 0.5px black; /* Adjust shadow for visibility */
+        padding: 4px;
+        /* Further adjust padding */
+        box-shadow: 0px 0px 4px 0.5px black;
+        /* Adjust shadow for visibility */
     }
 }

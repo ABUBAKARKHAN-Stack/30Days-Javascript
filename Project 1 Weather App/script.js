@@ -6,7 +6,6 @@ document.querySelector('form').addEventListener(('submit'), (e) => {
     if (city) {
         weatherDetails(city)
         forecast(city)
-        document.querySelector('.info-container').style.display = 'block'
     } else {
         console.log('Please Enter City');
     }
@@ -57,7 +56,7 @@ async function forecast(city) {
     let res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIKEY}&units=metric`);
     let data = await res.json();
     console.log(data);
-    document.querySelector('.days-count').innerHTML = `5 Days Weather Forcast Of ${data.city.name}`
+    document.querySelector('.days-count').innerHTML = `Next 5 Days Weather Forecast for ${data.city.name}`
     let addedDays = {};
     let dailyForecasts = [];
 
@@ -111,7 +110,7 @@ async function forecast(city) {
             <p>${date.toLocaleDateString()} ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
             <div class="forecast-layout"> 
                 <img src="/assets/temp-cold.svg" alt="Temperature Icon" width="20px">
-                <p>${currval.main.temp_max}&deg;C / ${currval.main.temp_min}&deg;C</p>
+                <p style="font-weight:700;">${currval.main.temp_max}&deg;/ ${currval.main.temp_min}&deg;</p>
             </div>
         </div>
         `;
@@ -119,5 +118,4 @@ async function forecast(city) {
 }
 
 forecast('karachi');
-
 
