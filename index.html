@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <section class="main">
+        <div class="card">
+            <form class="top">
+                <input type="text" name="city-field" id="search-city" placeholder="enter city">
+                <button type="submit">
+                    <img src="/assets/search.svg" alt="search-icon" width="40%">
+                </button>
+            </form>
+            <div class="weather">
+                <img src="#" alt="" class="weather-img">
+                <p style="font-size: 16px; text-align: center;" class="conditions"></p>
+                <p class="cityName"></p>
+            </div>
+            <div class="details">
+                <div class="details-layout">
+                    <img src="/assets/temp-cold.svg" alt="" width="30px">
+                    <div>
+                        <p style="font-size: 20px;" class="cityTemp"></p>
+                        <p style="font-size: 13px;">Temperature</p>
+                    </div>
+                </div>
+                <div class="details-layout">
+                    <img src="/assets/temperature-feels-like.svg" alt="" width="30px">
+                    <div>
+                        <p style="font-size: 20px;" class="feelLike"></p>
+                        <p style="font-size: 13px;">Feels Like</p>
+                    </div>
+                </div>
+            </div>
+            <div class="details">
+                <div class="details-layout">
+                    <img src="/assets/images/humidity.png" alt="" width="30px">
+                    <div>
+                        <p style="font-size: 20px;" class="humidity"></p>
+                        <p style="font-size: 13px;">Humidity</p>
+                    </div>
+                </div>
+                <div class="details-layout">
+                    <img src="/assets/images/wind.png" alt="" width="30px">
+                    <div>
+                        <p style="font-size: 20px;" class="windSpeed"></p>
+                        <p style="font-size: 13px;">Wind</p>
+                    </div>
+                </div>
+            </div>
+            <h5 style="margin-top: 30px; text-align: center;" class="days-count"></h5>
+            <div class="forecast">
+            </div>
+        </div>
+    </section>
+    <script src="/script.js"></script>
+</body>
+
+</html>
