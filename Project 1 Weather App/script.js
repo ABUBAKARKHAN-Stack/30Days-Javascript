@@ -6,6 +6,7 @@ document.querySelector('form').addEventListener(('submit'), (e) => {
     if (city) {
         weatherDetails(city)
         forecast(city)
+        document.querySelector('.info-container').style.display = 'block'
     } else {
         console.log('Please Enter City');
     }
@@ -56,36 +57,60 @@ async function forecast(city) {
     let res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIKEY}&units=metric`);
     let data = await res.json();
     console.log(data);
-
-    // Filter to get one forecast per day
+    document.querySelector('.days-count').innerHTML = `5 Days Weather Forcast Of ${data.city.name}`
+    let addedDays = {};
     let dailyForecasts = [];
-    let currentDay = null;
 
     data.list.forEach((forecast) => {
         const date = new Date(forecast.dt_txt);
         const day = date.getDate();
 
-        // Check if we have already added a forecast for this day
-        if (day !== currentDay && date.getHours() === 12) { // Choose forecasts around noon
+        if (!addedDays[day]) {
             dailyForecasts.push(forecast);
-            currentDay = day;
+            addedDays[day] = true;
         }
     });
 
     // Limit to 5 days
     dailyForecasts = dailyForecasts.slice(0, 5);
 
+    // Generate HTML
     document.querySelector('.forecast').innerHTML = dailyForecasts.map((currval) => {
         const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         const date = new Date(currval.dt_txt);
         const dayName = daysOfWeek[date.getDay()];
-        
+
+        const imageCheck = currval.weather[0].main.toLowerCase();
+        let weatherImage = '/assets/images/default.png'; // Default image path
+
+        if (imageCheck.includes('mist') || imageCheck.includes('haze') || imageCheck.includes('fog')) {
+            weatherImage = '/assets/images/mist.png';
+        } else if (imageCheck.includes('clouds')) {
+            weatherImage = '/assets/images/clouds.png';
+        } else if (imageCheck.includes('clear')) {
+            weatherImage = '/assets/images/clear.png';
+        } else if (imageCheck.includes('drizzle')) {
+            weatherImage = '/assets/images/drizzle.png';
+        } else if (imageCheck.includes('rain')) {
+            weatherImage = '/assets/images/rain.png';
+        } else if (imageCheck.includes('snow')) {
+            weatherImage = '/assets/images/snow.png';
+        } else if (imageCheck.includes('thunderstorm')) {
+            weatherImage = '/assets/images/thunderstorm.png';
+        } else if (imageCheck.includes('wind')) {
+            weatherImage = '/assets/images/windy.png';
+        }
+
         return `
         <div class="forecast-item">
+        <div style="display:flex; align-items:center;"> 
+            <img src="${weatherImage}" alt="${imageCheck}" width="30px">
+            <p> ${imageCheck.charAt(0).toUpperCase() + imageCheck.slice(1)} </p>
+        </div>
             <p>${dayName}</p>
-            <p>${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+            <p>${date.toLocaleDateString()} ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
             <div class="forecast-layout"> 
-                <img src="/assets/temp-cold.svg" alt="Weather Icon" width="20px">
+                <img src="/assets/temp-cold.svg" alt="Temperature Icon" width="20px">
                 <p>${currval.main.temp_max}&deg;C / ${currval.main.temp_min}&deg;C</p>
             </div>
         </div>
@@ -94,3 +119,5 @@ async function forecast(city) {
 }
 
 forecast('karachi');
+
+
