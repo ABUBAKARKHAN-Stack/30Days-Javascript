@@ -36,7 +36,17 @@ document.querySelector('form').addEventListener("submit", (e) => {
 
 const moreDetails = document.querySelector('.more-info')
 moreDetails.addEventListener("click", () => {
-    document.querySelector('#movieDetail').style.display = 'block'
+    const details_Section = document.querySelector('#movieDetail')
+    details_Section.classList.toggle('show')
+    setTimeout(() => {
+        if (details_Section.className.includes('show')) {
+            details_Section.style.display = 'block'
+            details_Section.classList.remove('hidden')
+        } else {
+            details_Section.style.display = 'none'
+        }
+    }, 300);
+
 })
 // Function to fetch and display movie data
 async function movieData(movieName) {
@@ -45,6 +55,8 @@ async function movieData(movieName) {
         const API = `https://www.omdbapi.com/?apikey=3e53cc40&t=${movieName}`; // API endpoint with movie name
         const response = await fetch(API); // Fetch data from API
         const data = await response.json(); // Parse response to JSON
+        console.log(data);
+
 
         // Check if the movie was found
         if (data.Response === "True") {
@@ -53,6 +65,11 @@ async function movieData(movieName) {
             document.querySelector('.movie-poster').src = data.Poster; // Display movie poster
             document.querySelector('.release-Year').style.display = 'block'; // Show release year
             document.querySelector('.release-Year').innerHTML = 'Release Year: ' + data.Year; // Display release year
+            document.querySelector('.movie-title').innerHTML = data.Title
+            document.querySelector('.movie-type').innerHTML = 'Type ' + data.Type
+            document.querySelector('.plot').innerHTML = 'Plot: ' + data.Plot
+            document.querySelector('.movie-director').innerHTML = 'Director: ' + data.Director
+            document.querySelector('.movie-actors').innerHTML = 'Actors: ' + data.Actors
         } else {
             document.querySelector('.title').style.color = 'red'; // Set title color to red if movie not found
             document.querySelector('.title').innerHTML = 'Movie not found!'; // Display movie not found message
