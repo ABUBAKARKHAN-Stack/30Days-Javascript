@@ -20,76 +20,41 @@
 
         /* General styles for light theme */
         body {
-            background-color: #f9f9f9;
-            color: #333;
+            background-color: #f9f9f9; /* Light background color */
+            color: #333; /* Dark text color for readability */
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 1200px; /* Maximum width for the container */
+            margin: 0 auto; /* Center the container horizontally */
         }
 
         .movie-card {
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
         }
 
         .movie-card:hover {
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-primary {
-            background-color: #3498db;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .btn-primary:hover {
-            background-color: #2980b9;
-        }
-
-        .btn-secondary {
-            background-color: #e0e0e0;
-            color: #333;
-            padding: 0.5rem 1rem;
-            border-radius: 0.25rem;
-            font-size: 0.875rem;
-            font-weight: 400;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .btn-secondary:hover {
-            background-color: #c0c0c0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Shadow effect on hover */
         }
 
         .error-message {
-            margin-top: 1rem;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            background-color: #e57373;
-            color: white;
+            margin-top: 1rem; /* Space above the error message */
+            padding: 1rem; /* Padding inside the error message box */
+            border-radius: 0.5rem; /* Rounded corners for the error message box */
+            background-color: #e57373; /* Red background color for error */
+            color: white; /* White text color for error message */
         }
 
         .movie-detail p {
-            margin-top: 0.5rem;
+            margin-top: 0.5rem; /* Space above paragraphs in movie details */
         }
 
+        /* Adjust the movie poster class to be responsive */
         .movie-poster {
-            width: 300px;
-            /* Fixed width */
-            height: 450px;
-            /* Fixed height */
-            object-fit: cover;
-            /* Maintains aspect ratio */
-            border-radius: 0.5rem;
+            width: 100%; /* Takes full width of its parent */
+            height: auto; /* Maintains aspect ratio */
+            object-fit: cover; /* Ensures the image covers the area */
+            border-radius: 0.5rem; /* Rounded corners for the movie poster */
         }
     </style>
 </head>
@@ -104,8 +69,8 @@
         <!-- Search Bar Section -->
         <form class="flex justify-center mb-8">
             <input id="searchInput" type="text" placeholder="Search for a movie..."
-                class="border-2 border-gray-300 bg-white p-3 rounded-l-lg w-1/2 text-gray-800 focus:outline-none focus:border-blue-500">
-            <button type="submit" class="btn-primary rounded-r-lg">Search</button>
+                class="transition-all duration-400 ease-linear border-2 border-gray-300 bg-white p-3 rounded-l-lg w-1/2 text-gray-800 outline-none focus:border-blue-500">
+            <button type="submit" class="px-[1.75rem] py-[0.75rem] text-white font-[500] uppercase bg-[#3498db] transition-colors duration-300 ease-linear hover:bg-[#2980b9] rounded-r-lg">Search</button>
         </form>
 
         <!-- Movie Results Section -->
@@ -117,47 +82,52 @@
                     <div class="border-t-4 border-gray-400 border-dotted rounded-full w-10 h-10 animate-spin"></div>
                     <p class="text-lg font-semibold mt-2">Loading...</p>
                 </div>
-                <div class="onLoading max-w-2xl  p-6 hidden grid-cols-1 md:grid-cols-2 gap-6">
-             
-                        <!-- Movie Poster Image -->
-                        <img src="https://via.placeholder.com/300x450?text=Search%20for%20a%20Movie" alt="Movie Poster"
-                            class="movie-poster h-full  rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
-        
+                <div class="onLoading md:max-w-2xl p-6 hidden grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Movie Poster Image -->
+                    <img src="https://via.placeholder.com/300x450?text=Search%20for%20a%20Movie" alt="Movie Poster"
+                        class="movie-poster h-full md:w-full w-screen rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
+
+                    <!-- Movie Details -->
                     <div
-                        class="bg-black text-white about-movie flex flex-col justify-center md:gap-4 p-4 rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
-                        <h2 class="title text-2xl font-bold mb-2"></h2>
+                        class="bg-black hover:bg-[#323232] transition-all duration-400 ease-linear text-white about-movie tracking-wide flex flex-col justify-center md:gap-4 p-4 rounded-lg shadow-md">
+                        <h2 class="title text-2xl tracking-normal font-bold mb-2"></h2>
                         <!-- Movie Release Year -->
                         <p class="release-Year text-lg font-semibold"></p>
                         <p class="release-date"></p>
                         <p class="genre mb-2"></p>
-                        <div class="flex items-center gap-2 mb-2">
-                            <p class="text-lg font-semibold"></p>
+                        <div class="flex items-center gap-2 mb-2 rating-div">
+                            <p class="text-lg font-semibold">Rating</p>
                             <p class="rating bg-teal-500 font-bold px-3 py-1 rounded-full text-sm text-white"></p>
                         </div>
                         <p class="writer"></p>
                         <!-- More Info Button -->
                         <button
-                            class="btn-secondary mt-2 more-info bg-teal-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-teal-600 transition">
-                            More Info
+                            class="mt-2 more-info block outline-none bg-[#e0e0e0] text-[#333] py-2 px-4 rounded-lg font-medium hover:bg-[#c0c0c0] transition-all duration-300 ease-linear">
+                            More Info 
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
-
-
 
         <!-- Error Message Section -->
         <p class="error-message text-center text-2xl font-semibold hidden"></p>
 
         <!-- Detailed Movie Information Section -->
-        <div id="movieDetail" class="hidden bg-white p-6 rounded-lg shadow-lg">
-            <h2 class="movie-title text-2xl font-bold mb-4">Movie Title</h2>
-            <h3 class="movie-type text-xl font-semibold mb-4">Movie Type</h3>
-            <p class="movie-director">Director: Director Name</p>
-            <p class="movie-actors">Actors: Actor Names</p>
-            <p class="mt-4 plot">Movie plot description...</p>
+        <div id="movieDetail" class="hidden space-y-6 bg-black/90 text-white p-6 rounded-lg shadow-lg">
+            <h2 class="movie-title tracking-widest text-2xl font-bold mb-4"></h2>
+            <span class="flex gap-2 font-semibold text-xl mb-4"><b>Type:</b>
+                <h3 class="movie-type tracking-widest"></h3>
+            </span>
+            <span class="flex gap-2"><b>Director:</b>
+                <p class="movie-director"></p>
+            </span>
+            <span class="flex gap-2"><b>Actors:</b>
+                <p class="movie-actors"></p>
+            </span>
+            <span class="flex gap-2 mt-4"><b>Plot:</b>
+                <p class="plot tracking-widest"></p>
+            </span>
         </div>
     </div>
 
