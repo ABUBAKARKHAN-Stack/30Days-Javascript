@@ -12,62 +12,152 @@
             0% {
                 transform: scale(.6) rotate(0deg);
             }
+
             100% {
                 transform: scale(.4) rotate(360deg);
             }
         }
+
+        /* General styles for light theme */
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .movie-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .movie-card:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-secondary {
+            background-color: #e0e0e0;
+            color: #333;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            font-weight: 400;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: #c0c0c0;
+        }
+
+        .error-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background-color: #e57373;
+            color: white;
+        }
+
+        .movie-detail p {
+            margin-top: 0.5rem;
+        }
+
+        .movie-poster {
+            width: 300px;
+            /* Fixed width */
+            height: 450px;
+            /* Fixed height */
+            object-fit: cover;
+            /* Maintains aspect ratio */
+            border-radius: 0.5rem;
+        }
     </style>
 </head>
 
-<body class="bg-gray-100">
+<body class="font-sans">
     <div class="container mx-auto p-4">
         <!-- Header Section -->
-        <header class="text-center mb-4">
-            <h1 class="text-4xl font-bold text-gray-800">Movie Search App</h1>
+        <header class="text-center mb-8">
+            <h1 class="text-5xl font-extrabold">Movie Search App</h1>
         </header>
 
         <!-- Search Bar Section -->
         <form class="flex justify-center mb-8">
             <input id="searchInput" type="text" placeholder="Search for a movie..."
-                class="border-2 border-gray-300 p-2 rounded-l-lg w-1/2">
-            <button type="submit" class="bg-blue-500 text-white p-2 rounded-r-lg hover:bg-blue-600">Search</button>
+                class="border-2 border-gray-300 bg-white p-3 rounded-l-lg w-1/2 text-gray-800 focus:outline-none focus:border-blue-500">
+            <button type="submit" class="btn-primary rounded-r-lg">Search</button>
         </form>
 
         <!-- Movie Results Section -->
         <div id="movieResults" class="flex flex-col justify-center items-center">
             <!-- Example Movie Card -->
-            <div class="bg-white w-96 shadow-md rounded-lg overflow-hidden">
-                <div class="loading-text hidden justify-center items-center">
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-6 movie-card">
+                <div class="loading-text hidden flex flex-col items-center justify-center p-6">
                     <!-- Spinner Animation -->
-                    <div class="border-t-4 border-black border-dotted rounded-full w-9 h-9 animate-spin"></div>
-                    <p class="text-lg font-semibold">Loading...</p>
+                    <div class="border-t-4 border-gray-400 border-dotted rounded-full w-10 h-10 animate-spin"></div>
+                    <p class="text-lg font-semibold mt-2">Loading...</p>
                 </div>
-                <div class="onLoading">
-                    <!-- Movie Poster Image -->
-                    <img src="https://via.placeholder.com/600x400?text=Search%20for%20a%20Movie" alt="Movie Poster"
-                        class="movie-poster w-full h-60">
-                    <div class="p-4">
-                        <!-- Movie Title -->
-                        <h2 class="title text-lg font-bold mb-2"></h2>
+                <div class="onLoading max-w-2xl  p-6 hidden grid-cols-1 md:grid-cols-2 gap-6">
+             
+                        <!-- Movie Poster Image -->
+                        <img src="https://via.placeholder.com/300x450?text=Search%20for%20a%20Movie" alt="Movie Poster"
+                            class="movie-poster h-full  rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
+        
+                    <div
+                        class="bg-black text-white about-movie flex flex-col justify-center md:gap-4 p-4 rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
+                        <h2 class="title text-2xl font-bold mb-2"></h2>
                         <!-- Movie Release Year -->
-                        <p class="release-Year text-gray-600"></p>
+                        <p class="release-Year text-lg font-semibold"></p>
+                        <p class="release-date"></p>
+                        <p class="genre mb-2"></p>
+                        <div class="flex items-center gap-2 mb-2">
+                            <p class="text-lg font-semibold"></p>
+                            <p class="rating bg-teal-500 font-bold px-3 py-1 rounded-full text-sm text-white"></p>
+                        </div>
+                        <p class="writer"></p>
                         <!-- More Info Button -->
-                        <button class="mt-2 text-blue-500 hover:underline more-info">More Info</button>
+                        <button
+                            class="btn-secondary mt-2 more-info bg-teal-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-teal-600 transition">
+                            More Info
+                        </button>
                     </div>
                 </div>
+
             </div>
         </div>
-        
+
+
+
         <!-- Error Message Section -->
-        <p class="error-message text-center text-2xl font-semibold text-red-500 hidden"></p>
+        <p class="error-message text-center text-2xl font-semibold hidden"></p>
 
         <!-- Detailed Movie Information Section -->
-        <div id="movieDetail" class="hidden  bg-black/60 text-white p-6 rounded-lg shadow-lg">
-            <h2 class="movie-title text-2xl font-bold mb-4"></h2>
-            <h2 class="movie-type text-2xl font-bold mb-4"></h2>
-            <p class="movie-director"></p>
-            <p class="movie-actors"></p>
-            <p class="mt-4 plot"></p>
+        <div id="movieDetail" class="hidden bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="movie-title text-2xl font-bold mb-4">Movie Title</h2>
+            <h3 class="movie-type text-xl font-semibold mb-4">Movie Type</h3>
+            <p class="movie-director">Director: Director Name</p>
+            <p class="movie-actors">Actors: Actor Names</p>
+            <p class="mt-4 plot">Movie plot description...</p>
         </div>
     </div>
 

@@ -29,25 +29,29 @@ document.querySelector('form').addEventListener("submit", (e) => {
     const movieName = input.value; // Get the value from the input field
     if (movieName) {
         movieData(movieName); // Fetch and display movie data
+        document.querySelector('.onLoading').display = 'grid'
+        document.querySelector('.about-movie').style.display = 'flex'
+        const moreDetails = document.querySelector('.more-info')
+        moreDetails.addEventListener("click", () => {
+            const details_Section = document.querySelector('#movieDetail')
+            if (!details_Section.classList.contains('show')) {
+                details_Section.style.display = 'block'
+                setTimeout(() => {
+                    details_Section.classList.add('show')
+                }, 10);
+            } else {
+                details_Section.classList.remove('show')
+                setTimeout(() => {
+                    details_Section.style.display = 'none'
+                }, 300);
+            }
+
+        })
     } else {
         showError('Please Enter Movie Name'); // Show error if no movie name is entered
     }
 });
 
-const moreDetails = document.querySelector('.more-info')
-moreDetails.addEventListener("click", () => {
-    const details_Section = document.querySelector('#movieDetail')
-    details_Section.classList.toggle('show')
-    setTimeout(() => {
-        if (details_Section.className.includes('show')) {
-            details_Section.style.display = 'block'
-            details_Section.classList.remove('hidden')
-        } else {
-            details_Section.style.display = 'none'
-        }
-    }, 300);
-
-})
 // Function to fetch and display movie data
 async function movieData(movieName) {
     setLoading(true); // Show loading state
@@ -60,11 +64,15 @@ async function movieData(movieName) {
 
         // Check if the movie was found
         if (data.Response === "True") {
-            document.querySelector('.title').style.color = 'black'; // Set title color to black
+            document.querySelector('.title').style.color = 'white'
             document.querySelector('.title').innerHTML = 'Movie Title: ' + data.Title; // Display movie title
             document.querySelector('.movie-poster').src = data.Poster; // Display movie poster
             document.querySelector('.release-Year').style.display = 'block'; // Show release year
             document.querySelector('.release-Year').innerHTML = 'Release Year: ' + data.Year; // Display release year
+            document.querySelector('.release-date').innerHTML  = 'Release Date: ' + data.Released
+            document.querySelector('.genre').innerHTML = "Genre: " + data.Genre
+            document.querySelector('.rating').innerHTML = data.Ratings[0].Value
+            document.querySelector('.writer').innerHTML = `Writer: "${data.Writer}"`
             document.querySelector('.movie-title').innerHTML = data.Title
             document.querySelector('.movie-type').innerHTML = 'Type ' + data.Type
             document.querySelector('.plot').innerHTML = 'Plot: ' + data.Plot
