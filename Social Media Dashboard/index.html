@@ -1,14 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div class="bg-slate-300 w-full h-screen">Hello World</div>
-    <!-- <script type="module" src="/main.js"></script> -->
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login To ConnectHub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-[#18181b] text-white w-screen h-screen flex flex-col justify-center items-center">
+  <form class="max-w-sm w-full flex flex-col gap-6  h-auto px-8 py-6 rounded-lg shadow-lg shadow-black bg-white">
+    <p class="text-3xl font-bold text-gray-900 mb-4">Sign In</p>
+    <label for="userName" class="sr-only">Username</label>
+    <input type="text" id="userName" placeholder="Enter username"
+      class="placeholder:text-gray-500 outline-none text-gray-900 w-full px-4 py-2 bg-gray-100 rounded border border-gray-300 focus:ring-[0.5]  focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out">
+      <p class="nameErrorText font-semibold text-xs text-red-600"></p>
+    <div class="relative flex items-center">
+      <label for="password" class="sr-only">Password</label>
+      <input type="password" id="password" placeholder="Enter password"
+        class="placeholder:text-gray-500 outline-none text-gray-900 w-full px-4 py-2 bg-gray-100 rounded border border-gray-300 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out pr-10">
+        <p class="passErrorText hidden text-xs text-red-600"></p>
+      <button type="button" id="togglePassword" class="outline-none absolute right-2 top-1/2 transform -translate-y-1/2">
+        <img src="/assets/eyeOff.svg" alt="Show password" class="eyeIcon w-4 h-4">
+      </button>
+    </div>
+    <button type="submit"
+      class="formSubmit px-6 py-3 rounded-xl font-semibold bg-blue-600 text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 w-full transition duration-150 ease-in-out">
+      Sign In
+    </button>
+  </form>
+
+<script type="module" src="main.js"></script>
+</body>
+
 </html>
